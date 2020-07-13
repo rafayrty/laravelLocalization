@@ -26,7 +26,10 @@ class UsersController extends Controller
      */
     public function create()
     {
+
+//Fetch Current Language
         $locale = Config::get('app.locale');
+      
         return view('add',compact('locale'));
         //
     }
@@ -46,7 +49,7 @@ class UsersController extends Controller
         $user->email = $request->email;
          $user->save();
 
-return redirect()->route('users.index');
+return redirect()->route('users.index'); // It Will Automatically Redirect Based on the current language no need to add ar.en or he
         //
     }
 
@@ -83,7 +86,7 @@ return view('edit',compact('user'));
         $user->password = request()->pass;
       }
       $user->save();
-   return   redirect()->route('users.index');
+   return   redirect()->route('users.index'); //Same automatic redirect here as well
   }
   
     /**
@@ -97,7 +100,7 @@ return view('edit',compact('user'));
         $user = \App\User::findOrFail($id);
 
         $user->delete();
-        return  redirect()->route('users.index');
+        return  redirect()->route('users.index'); // Here as well
 
         //
     }
